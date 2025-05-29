@@ -1,36 +1,175 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project Structure and Conventions
 
-## Getting Started
+## Directory Structure
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+src/
+├── app/                    # Next.js app router pages and layouts
+│   ├── (auth)/            # Authentication related routes
+│   ├── (dashboard)/       # Dashboard related routes
+│   └── api/               # API routes
+├── components/            # React components
+│   ├── ui/               # Reusable UI components (shadcn)
+│   ├── forms/            # Form-related components
+│   ├── layout/           # Layout components
+│   └── features/         # Feature-specific components
+├── lib/                  # Utility functions and shared logic
+│   ├── utils.ts         # General utilities
+│   └── constants.ts     # Constants and configuration
+├── hooks/               # Custom React hooks
+├── types/               # TypeScript type definitions
+├── styles/              # Global styles and CSS modules
+└── store/               # State management (if needed)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Path Aliases
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+We use path aliases to make imports cleaner and more maintainable:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```typescript
+// Instead of
+import { Button } from "../../../components/ui/button";
 
-## Learn More
+// We use
+import { Button } from "@ui/button";
+```
 
-To learn more about Next.js, take a look at the following resources:
+Available aliases:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `@/*` - Root of src directory
+- `@components/*` - All components
+- `@ui/*` - UI components (shadcn)
+- `@forms/*` - Form components
+- `@layout/*` - Layout components
+- `@features/*` - Feature-specific components
+- `@lib/*` - Utility functions and shared logic
+- `@hooks/*` - Custom React hooks
+- `@types/*` - TypeScript type definitions
+- `@styles/*` - Global styles and CSS modules
+- `@store/*` - State management
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Component Organization
 
-## Deploy on Vercel
+### UI Components (`components/ui/`)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Reusable, presentational components
+- Built with shadcn/ui
+- Should be as generic as possible
+- Props should be well-documented
+- Example: Button, Input, Card, Dialog
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Feature Components (`components/features/`)
+
+- Business logic specific components
+- Can use multiple UI components
+- Should be organized by feature/domain
+- Example: UserProfile, ProductList
+
+### Layout Components (`components/layout/`)
+
+- Page layout components
+- Header, Footer, Sidebar
+- Navigation components
+- Should be reusable across pages
+
+### Form Components (`components/forms/`)
+
+- Form-specific components
+- Form validation logic
+- Form field components
+- Form submission handling
+
+## Code Conventions
+
+### Naming Conventions
+
+- Components: PascalCase (e.g., `UserProfile.tsx`)
+- Utilities: camelCase (e.g., `formatDate.ts`)
+- Constants: UPPER_SNAKE_CASE
+- Types/Interfaces: PascalCase with prefix (e.g., `IUserProfile`)
+
+### File Organization
+
+- One component per file
+- Related components in the same directory
+- Shared types in `types/` directory
+- Utility functions in `lib/` directory
+
+### Component Structure
+
+```typescript
+// Imports
+import { type FC } from "react";
+import { cn } from "@/lib/utils";
+
+// Types
+interface Props {
+  // ...
+}
+
+// Component
+export const ComponentName: FC<Props> = ({ prop1, prop2 }) => {
+  // ...
+};
+
+// Export
+export default ComponentName;
+```
+
+## Git Commit Conventions
+
+We use conventional commits format:
+
+```
+type(scope): subject
+```
+
+Types:
+
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation changes
+- `style`: Code style changes
+- `refactor`: Code refactoring
+- `perf`: Performance improvements
+- `test`: Adding or modifying tests
+- `chore`: Maintenance tasks
+- `ci`: CI configuration changes
+- `build`: Build system changes
+- `revert`: Reverting changes
+
+Example:
+
+```
+feat(auth): add login form component
+fix(api): resolve user data fetching issue
+docs(readme): update installation instructions
+```
+
+## Pre-commit Hooks
+
+The project uses Husky for git hooks:
+
+- Pre-commit: Runs ESLint and Prettier
+- Pre-push: Runs build check
+- Commit-msg: Validates commit message format
+
+## Icon Usage
+
+We use a universal Icon component that wraps Lucide icons:
+
+```typescript
+import { Icon } from '@/components/ui/icon'
+import { User } from 'lucide-react'
+
+// Usage
+<Icon icon={User} size={24} className="text-primary" />
+```
+
+## Styling Conventions
+
+- Use Tailwind CSS for styling
+- Follow mobile-first approach
+- Use CSS variables for theming
+- Keep styles close to components
+- Use shadcn/ui components as base
