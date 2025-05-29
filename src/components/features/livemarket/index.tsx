@@ -4,7 +4,7 @@ import { LiveMarketTicker } from "./ticker";
 
 export function LiveMarket() {
   return (
-    <div className="w-full flex flex-col gap-4">
+    <div className="w-full flex flex-col gap-10">
       <div className="w-full flex flex-col sm:flex-row gap-4">
         <div className="w-full md:w-8/12 lg:w-8/12">
           <LiveMarketBanner />
