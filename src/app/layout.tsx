@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import BaseLayout from "@/components/layout/base";
+import BaseLayout from "@layout/base";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru">
+    <html lang="ru" suppressHydrationWarning className="scroll-smooth">
       <body className={`${inter.className} bg-background min-h-screen`}>
         <BaseLayout>{children}</BaseLayout>
       </body>

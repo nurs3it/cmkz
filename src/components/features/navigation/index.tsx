@@ -6,6 +6,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "@ui/hover-card";
 import { Sheet, SheetContent, SheetTrigger } from "@ui/sheet";
 import { Menu } from "lucide-react";
 import { getId } from "@lib/id";
+import Link from "next/link";
 
 export function Navigation() {
   return (
@@ -27,11 +28,12 @@ export function Navigation() {
               <div className="flex flex-col w-max h-max">
                 {item.children?.map((child) => (
                   <Button
+                    asChild
                     key={getId()}
                     variant="ghost"
                     className="p-4 flex-wrap font-normal max-w-80 flex h-auto text-left justify-start cursor-pointer rounded-none border-b whitespace-normal hover:text-primary"
                   >
-                    {child.label}
+                    <Link href={child.href || ""}>{child.label}</Link>
                   </Button>
                 ))}
               </div>
