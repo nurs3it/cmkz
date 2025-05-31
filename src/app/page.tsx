@@ -3,6 +3,8 @@ import { LiveMarket } from "@features/livemarket";
 import { Regulation } from "@features/regulation";
 import { Container } from "@layout/container";
 import { Review } from "@features/review";
+import { News } from "@features/news";
+import { Initiatives } from "@features/initiatives";
 
 export default function Home() {
   return (
@@ -13,6 +15,10 @@ export default function Home() {
         <Regulation />
       </Container>
       <Review />
+      <Container className="flex flex-col gap-10 px-4">
+        <News />
+        <Initiatives />
+      </Container>
     </div>
   );
 }
