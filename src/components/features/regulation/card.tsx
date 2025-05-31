@@ -1,0 +1,36 @@
+import { Button } from "@/components/ui/button";
+import { Icon } from "@/components/ui/icon";
+import { Regulation as RegulationType } from "@/types/regulation";
+import { ChevronRightIcon } from "lucide-react";
+import Image from "next/image";
+
+interface RegulationCardProps {
+  card: RegulationType;
+}
+
+export function RegulationCard({ card }: RegulationCardProps) {
+  return (
+    <div className="flex flex-col border rounded overflow-hidden">
+      <div className="w-full h-[200px] bg-slate-50">
+        <Image
+          src={card.image}
+          alt={card.title}
+          width={600}
+          height={400}
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="flex flex-col gap-2 px-4 py-2 h-full">
+        <h3 className="text-lg font-bold">{card.title}</h3>
+        <p className="text-sm text-foreground">{card.description}</p>
+        <Button
+          variant="link"
+          className="w-max text-primary p-0 cursor-pointer flex items-center gap-2 mt-auto"
+        >
+          Читать далее
+          <Icon icon={ChevronRightIcon} size={16} />
+        </Button>
+      </div>
+    </div>
+  );
+}

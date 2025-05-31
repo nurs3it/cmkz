@@ -6,7 +6,7 @@ const nextConfig = {
   // Оптимизация изображений
   images: {
     // Разрешенные домены для оптимизации изображений
-    domains: [],
+    domains: ["via.placeholder.com", "placehold.co", "dummyimage.com"],
     // Форматы изображений для оптимизации
     formats: ["image/avif", "image/webp"],
     // Отключаем неиспользуемые форматы
