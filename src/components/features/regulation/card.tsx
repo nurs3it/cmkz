@@ -76,7 +76,7 @@ const RegulationCardFiles = ({
               variant="link"
               className="flex items-center gap-2 text-left text-primary-foreground underline p-0"
               key={file.title}
-              onClick={() => window.open(file.file, "_blank")}
+              onClick={() => console.log(file)}
             >
               <Icon icon={FileIcon} size={16} />
               <p className="text-primary-foreground">{file.title}</p>
