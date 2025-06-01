@@ -15,7 +15,6 @@ const nextConfig = {
   },
 
   // Оптимизация сборки
-  swcMinify: true,
   poweredByHeader: false,
   compress: true,
 
@@ -29,16 +28,10 @@ const nextConfig = {
 
   // Оптимизация загрузки
   experimental: {
-    // Включаем оптимизацию шрифтов
-    optimizeFonts: true,
     // Включаем оптимизацию CSS
     optimizeCss: true,
-    // Включаем оптимизацию изображений
-    optimizeImages: true,
     // Включаем оптимизацию пакетов
     optimizePackageImports: ["@radix-ui/react-icons", "lucide-react"],
-    // Включаем оптимизацию серверных компонентов
-    serverComponentsExternalPackages: [],
     // Включаем оптимизацию кэширования
     serverActions: {
       bodySizeLimit: "2mb",
