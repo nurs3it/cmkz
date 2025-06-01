@@ -80,3 +80,7 @@ export function getBreadcrumbs(currentPath: string): Breadcrumb[] {
 
   return breadcrumbs;
 }
+
+export function getPageMetadata(currentPath: string): RouteMeta | undefined {
+  return routeMetadata.find((r) => r.path === currentPath);
+}
