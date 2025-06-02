@@ -4,14 +4,19 @@ import {
   getNestedTranslation,
   type NestedMessages,
 } from "@/utils/translations";
+import { headers } from "next/headers";
 
 interface PageTitleProps {
-  pathname: string;
+  pathname?: string;
 }
 
-export async function PageTitle({ pathname }: PageTitleProps) {
+export async function PageTitle({ pathname = "" }: PageTitleProps) {
+  const headersList = await headers();
+  const pathFromHeader = headersList.get("x-pathname") || "";
   const messages = (await getMessages()) as NestedMessages;
-  const page = getPageMetadata(pathname);
+  const page = getPageMetadata(
+    pathname || pathFromHeader || window.location.pathname,
+  );
 
   const title = page?.titleKey
     ? getNestedTranslation(messages, page.titleKey)
