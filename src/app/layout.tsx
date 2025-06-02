@@ -4,14 +4,23 @@ import "./globals.css";
 import BaseLayout from "@layout/base";
 import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import { getNestedTranslation } from "@/utils/translations";
+import { getPageMetadata } from "@/lib/breadcrumbs";
+import { headers } from "next/headers";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
 export async function generateMetadata(): Promise<Metadata> {
   const messages = await getMessages();
+  const headersList = await headers();
+  const pathname = headersList.get("x-pathname") || "";
+  const page = getPageMetadata(pathname);
   return {
-    title: messages.page_titles.home,
-    description: "CMKZ Frontend Application",
+    title: getNestedTranslation(messages, page?.titleKey || "page_titles.home"),
+    description: getNestedTranslation(
+      messages,
+      page?.titleKey || "page_titles.home",
+    ),
   };
 }
 

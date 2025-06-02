@@ -1,9 +1,9 @@
 import { Container } from "@layout/container";
 import Link from "next/link";
 import { menu } from "@/components/features/header/data";
-import { useTranslations } from "next-intl";
 import { Metadata } from "next";
 import { getMessages } from "next-intl/server";
+import { getNestedTranslation } from "@/utils/translations";
 
 export async function generateMetadata(): Promise<Metadata> {
   const messages = await getMessages();
@@ -12,17 +12,21 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function Statistics() {
-  const t = useTranslations();
+export default async function Statistics() {
+  const messages = await getMessages();
   const statistics = menu.find((item) => item.code === "statistics");
 
   return (
     <Container className="flex flex-col gap-4 py-10 px-4">
-      <h1 className="text-2xl font-bold">{t("page_titles.statistics")}</h1>
+      <h1 className="text-2xl font-bold">
+        {getNestedTranslation(messages, "page_titles.statistics")}
+      </h1>
       <ul>
         {statistics?.children?.map((item) => (
           <li className="text-lg underline text-primary" key={item.code}>
-            <Link href={item.href || ""}>{t(item.labelKey)}</Link>
+            <Link href={item.href || ""}>
+              {getNestedTranslation(messages, item.labelKey)}
+            </Link>
           </li>
         ))}
       </ul>
