@@ -23,14 +23,14 @@ export const routeMetadata: RouteMeta[] = [
     path: "/statistics/calendar-of-issues",
     title: "Календарь выпусков включая  предстоящие аукционы и даты  выпуска",
   },
-  { path: "/information", title: "ИНФОРМАЦИЯ О ФИ" },
+  { path: "/information", title: "Информация о фи" },
   { path: "/information/bonds", title: "Сведения по облигациям" },
   { path: "/information/issuers", title: "Сведения по эмитентам" },
   {
     path: "/information/calendar-of-corporate-events",
     title: "Календарь корпоративных  событий",
   },
-  { path: "/normative-legal-base", title: "НОРМАТИВНО-ПРАВОВАЯ БАЗА" },
+  { path: "/normative-legal-base", title: "Нормативно-правовая база" },
   {
     path: "/normative-legal-base/rules-and-regulations",
     title: "Правила и положения,  регулирующие рынок с  ссылками",
@@ -41,7 +41,7 @@ export const routeMetadata: RouteMeta[] = [
     path: "/normative-legal-base/protection-of-investor-rights",
     title: "Защита прав инвесторов",
   },
-  { path: "/contacts", title: "КОНТАКТЫ" },
+  { path: "/contacts", title: "Контакты" },
   {
     path: "/contacts/contact-form",
     title: "Контактная форма для  запросов и обратной связи",

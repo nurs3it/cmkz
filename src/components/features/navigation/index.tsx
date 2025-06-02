@@ -14,7 +14,7 @@ export function Navigation() {
       {/* Desktop Navigation */}
       <nav className="hidden md:flex items-center gap-2 ml-auto">
         {menu.map((item) => (
-          <HoverCard key={item.label} openDelay={0} closeDelay={0}>
+          <HoverCard key={item.code} openDelay={0} closeDelay={0}>
             <HoverCardTrigger asChild>
               <Button
                 variant="ghost"

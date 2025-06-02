@@ -8,7 +8,7 @@ import {
 
 export function Footer() {
   return (
-    <footer className="bg-muted text-muted-foreground text-sm">
+    <footer className="bg-muted text-muted-foreground text-sm mt-10">
       <div className="container mx-auto px-4 py-8 flex flex-col-reverse md:flex-row md:justify-between md:items-start gap-8">
         <div className="flex-1 flex flex-col gap-6 min-w-[260px]">
           <div>
