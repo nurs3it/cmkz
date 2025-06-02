@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 
 export function Breadcrumbs() {
   const pathname = usePathname();
-  const breadcrumbs = getBreadcrumbs(pathname);
+  const breadcrumbs = getBreadcrumbs(pathname || "");
 
   if (breadcrumbs.length === 0) return null;
 
