@@ -5,18 +5,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@ui/card";
-import { lazy, Suspense } from "react";
-
-const ContactForm = lazy(() => import("@/components/form/contact-form"));
+import { Suspense } from "react";
+import { ContactForm } from "@components/form/contact-form";
+import { useTranslations } from "next-intl";
 
 export function ContactValidationForm() {
+  const t = useTranslations();
+
   return (
     <Card className="p-4 shadow-none rounded">
       <CardHeader className="py-4">
-        <CardTitle className="text-xl">Вам нужна помощь?</CardTitle>
-        <CardDescription>
-          Напишите нам, и мы ответим в ближайшее время.
-        </CardDescription>
+        <CardTitle className="text-xl">{t("form.header.title")}</CardTitle>
+        <CardDescription>{t("form.header.description")}</CardDescription>
       </CardHeader>
       <CardContent className="pb-4">
         <Suspense fallback={<div>Loading...</div>}>

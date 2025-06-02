@@ -1,0 +1,156 @@
+{
+  "menu": {
+    "statistics": {
+      "title": "STATISTICS",
+      "bonds_realtime": "Bond yields, prices and volumes in real-time",
+      "macro_indicators": "Macroeconomic indicators",
+      "calendar_issues": "Issue calendar including upcoming auctions and issue dates"
+    },
+    "information": {
+      "title": "FINANCIAL INFORMATION",
+      "bonds": "Bond information",
+      "issuers": "Issuer information",
+      "corporate_events": "Corporate events calendar"
+    },
+    "legal": {
+      "title": "LEGAL FRAMEWORK",
+      "rules": "Rules and regulations governing the market with references",
+      "bond_types": "Types of bonds",
+      "taxation": "Taxation",
+      "investor_rights": "Protection of investor rights"
+    },
+    "contacts": {
+      "title": "CONTACTS",
+      "form": "Contact form for inquiries and feedback",
+      "info": "Contact information: email addresses and phone numbers of departments and organizations",
+      "participants": "Contact information of market participants",
+      "faq": "Frequently asked questions"
+    }
+  },
+  "form": {
+    "header": {
+      "title": "Do you need help?",
+      "description": "Write to us and we will respond shortly."
+    },
+    "labels": {
+      "fullname": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "theme": "Subject",
+      "message": "Message",
+      "attachment": "Attachment"
+    },
+    "placeholders": {
+      "fullname": "Enter your full name",
+      "email": "Enter your email address",
+      "phone": "Enter your phone number",
+      "theme": "Enter message subject",
+      "message": "Enter your message",
+      "attachment": "Choose a file"
+    },
+    "validation": {
+      "fullname": "Full name must contain at least 2 characters",
+      "email": "Please enter a valid email address",
+      "phone": "Please enter a valid phone number",
+      "theme": "Subject must contain at least 2 characters",
+      "message": "Message must contain at least 10 characters",
+      "file_size": "File size should not exceed 10 MB",
+      "file_format": "Unsupported file format"
+    },
+    "descriptions": {
+      "attachment": "Allowed file types: PDF, DOC, DOCX, XLS, XLSX, PNG, JPG, JPEG, BMP, TIFF, TXT, CSV, ZIP, RAR and less than 10 MB"
+    },
+    "buttons": {
+      "submit": "Send",
+      "submitting": "Sending..."
+    },
+    "success": {
+      "title": "Success",
+      "message": "Your message has been sent successfully"
+    },
+    "error": {
+      "title": "Error",
+      "message": "An error occurred while sending your message"
+    },
+    "thank_you": {
+      "title": "Thank you for your message!",
+      "description": "We have received your message and will contact you shortly",
+      "new_request": "Send another message"
+    }
+  },
+  "locale": {
+    "kazakh": "Қазақша",
+    "russian": "Русский",
+    "english": "English"
+  },
+  "livemarket": {
+    "tabs": {
+      "gcb": "Government Bonds",
+      "corporate": "Corporate Bonds",
+      "index": "Indices"
+    },
+    "table": {
+      "code": "Code",
+      "value": "Value",
+      "trend": "Trend, %"
+    },
+    "view_market": "View Market",
+    "banner": {
+      "alt": "Live Market Banner",
+      "title": "ALL ABOUT KAZAKHSTAN'S BOND MARKET"
+    }
+  },
+  "security": {
+    "title": "Securities",
+    "description": "A security is a financial instrument that confirms the owner's right to certain property, such as money in a specified currency or a share in a company. Previously, securities were printed and presented physically, but now they mainly circulate in electronic format.",
+    "learn_more": "Learn More",
+    "image_alt": "Security Illustration"
+  },
+  "regulation": {
+    "title": "Regulation",
+    "read_more": "Read More",
+    "back_to_description": "Back to Description"
+  },
+  "news": {
+    "title": "News",
+    "view_all": "View All News"
+  },
+  "initiatives": {
+    "title": "Initiatives",
+    "view_all": "View All Initiatives",
+    "read_more": "Read More"
+  },
+  "reviews": {
+    "title": "Reviews",
+    "read_more": "Read more",
+    "description": "The total volume of Kazakhstan's bond market in national currency reached more than 50 trillion tenge (100 billion USD) by the end of 2024. It is necessary to note the balanced structure between the government securities market (XX%) and corporate bonds (YY%). Historically, the bond market, both government and corporate, has developed as exchange-centric, with the accumulative pension system playing a significant role in its development through the Unified Accumulative Pension Fund, which became the main large institutional investor in the bond market."
+  },
+  "footer": {
+    "contacts": "Contacts",
+    "address": "Address",
+    "terms": "Terms of Use",
+    "links": {
+      "cookies": "Cookie Usage",
+      "privacy": "Privacy Policy",
+      "app_terms": "Application Terms of Use",
+      "site_policy": "Website Usage Policy",
+      "public_offer": "Public Offer for Clients"
+    }
+  },
+  "bookmarks": {
+    "add": "Add to Bookmarks",
+    "remove": "Remove from Bookmarks",
+    "empty": "No saved bookmarks"
+  },
+  "page_titles": {
+    "home": "Home",
+    "statistics": "Statistics",
+    "information": "Financial Instruments Information",
+    "legal": "Legal Framework",
+    "contacts": "Contacts",
+    "news": "News",
+    "initiatives": "Initiatives",
+    "error": "Error",
+    "not_found": "Page Not Found"
+  }
+}

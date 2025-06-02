@@ -1,5 +1,6 @@
 import { Logo } from "@ui/logo";
-import { Navigation } from "../navigation";
+import { Navigation } from "@features/navigation";
+import LocaleChanger from "@features/locale/changer";
 
 export function Header() {
   return (
@@ -8,6 +9,7 @@ export function Header() {
         <div className="flex items-end justify-between gap-4 w-full">
           <Logo />
           <Navigation />
+          <LocaleChanger />
         </div>
       </div>
     </header>

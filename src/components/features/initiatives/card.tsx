@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
 import { Initiative } from "@/types/initiative";
@@ -9,6 +10,8 @@ interface InitiativeCardProps {
 }
 
 export function InitiativeCard({ card }: InitiativeCardProps) {
+  const t = useTranslations();
+
   return (
     <div className="flex flex-col border rounded overflow-hidden">
       <div className="w-full h-[200px] bg-slate-50">
@@ -27,7 +30,7 @@ export function InitiativeCard({ card }: InitiativeCardProps) {
           variant="link"
           className="w-max text-primary p-0 cursor-pointer flex items-center gap-2 mt-auto"
         >
-          Читать далее
+          {t("initiatives.read_more")}
           <Icon icon={ChevronRightIcon} size={16} />
         </Button>
       </div>

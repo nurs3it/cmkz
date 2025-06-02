@@ -25,37 +25,46 @@ import {
 import { submitContactForm } from "@/api/contact";
 import { usePhoneMask } from "@/hooks/use-phone-mask";
 import { ThankYouScreen } from "./thank-you-screen";
+import { useTranslations } from "next-intl";
 
-const formSchema = z.object({
-  fullname: z.string().min(2, "ФИО должно содержать минимум 2 символа"),
-  email: z.string().email("Введите корректный email"),
-  phone: z.string().min(10, "Введите корректный номер телефона"),
-  theme: z.string().min(2, "Тема должна содержать минимум 2 символа"),
-  message: z.string().min(10, "Сообщение должно содержать минимум 10 символов"),
-  attachment: z
-    .custom<File>()
-    .optional()
-    .refine(
-      (file) => !file || file.size <= MAX_FILE_SIZE,
-      "Размер файла не должен превышать 10 МБ",
-    )
-    .refine(
-      (file) =>
-        !file ||
-        ALLOWED_FILE_TYPES.includes(
-          file.type as (typeof ALLOWED_FILE_TYPES)[number],
-        ),
-      "Неподдерживаемый формат файла",
-    ),
-});
-
-export default function ContactForm() {
+export function ContactForm() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { formatPhoneNumber } = usePhoneMask();
+  const t = useTranslations();
 
-  const form = useForm<ContactFormData>({
+  const formSchema = z.object({
+    fullname: z.string().min(2, t("form.validation.fullname")),
+    email: z.string().email(t("form.validation.email")),
+    phone: z.string().min(10, t("form.validation.phone")),
+    theme: z.string().min(2, t("form.validation.theme")),
+    message: z.string().min(10, t("form.validation.message")),
+    attachment: z
+      .custom<FileList>()
+      .transform((file) => file as FileList)
+      .superRefine((files, ctx) => {
+        if (files?.[0]?.size > MAX_FILE_SIZE) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: t("form.validation.file_size"),
+          });
+        }
+        if (
+          files?.[0] &&
+          !ALLOWED_FILE_TYPES.includes(
+            files[0].type as (typeof ALLOWED_FILE_TYPES)[number],
+          )
+        ) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: t("form.validation.file_format"),
+          });
+        }
+      }),
+  });
+
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       fullname: "",
@@ -66,15 +75,17 @@ export default function ContactForm() {
     },
   });
 
-  const onSubmit = async (data: ContactFormData) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setIsSubmitting(true);
-      const response = await submitContactForm(data);
+      const response = await submitContactForm(
+        values as unknown as ContactFormData,
+      );
 
       if (response.success) {
         toast({
-          title: "Успешно",
-          description: response.message,
+          title: t("form.success.title"),
+          description: t("form.success.message"),
         });
         setIsSubmitted(true);
       } else {
@@ -83,11 +94,9 @@ export default function ContactForm() {
     } catch (error) {
       toast({
         variant: "destructive",
-        title: "Ошибка",
+        title: t("form.error.title"),
         description:
-          error instanceof Error
-            ? error.message
-            : "Произошла ошибка при отправке формы",
+          error instanceof Error ? error.message : t("form.error.message"),
       });
     } finally {
       setIsSubmitting(false);
@@ -111,9 +120,12 @@ export default function ContactForm() {
           name="fullname"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>ФИО</FormLabel>
+              <FormLabel>{t("form.labels.fullname")}</FormLabel>
               <FormControl>
-                <Input placeholder="Укажите ваше ФИО" {...field} />
+                <Input
+                  placeholder={t("form.placeholders.fullname")}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -125,11 +137,11 @@ export default function ContactForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{t("form.labels.email")}</FormLabel>
               <FormControl>
                 <Input
                   type="email"
-                  placeholder="Укажите электронную почту"
+                  placeholder={t("form.placeholders.email")}
                   {...field}
                 />
               </FormControl>
@@ -143,10 +155,10 @@ export default function ContactForm() {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Телефон</FormLabel>
+              <FormLabel>{t("form.labels.phone")}</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Номер телефона"
+                  placeholder={t("form.placeholders.phone")}
                   {...field}
                   onChange={(e) => {
                     const formatted = formatPhoneNumber(e.target.value);
@@ -164,9 +176,9 @@ export default function ContactForm() {
           name="theme"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Тема обращения</FormLabel>
+              <FormLabel>{t("form.labels.theme")}</FormLabel>
               <FormControl>
-                <Input placeholder="Тема обращения" {...field} />
+                <Input placeholder={t("form.placeholders.theme")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -178,10 +190,10 @@ export default function ContactForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Сообщение</FormLabel>
+              <FormLabel>{t("form.labels.message")}</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Сообщение"
+                  placeholder={t("form.placeholders.message")}
                   className="min-h-[120px]"
                   {...field}
                 />
@@ -194,32 +206,32 @@ export default function ContactForm() {
         <FormField
           control={form.control}
           name="attachment"
-          render={({ field: { onChange, ...field } }) => (
+          render={({ field: { onChange, value, ...field } }) => (
             <FormItem>
-              <FormLabel>Вложение</FormLabel>
-              <FormDescription>
-                Допустимые типы файлов: PDF, DOC, DOCX, XLS, XLSX, PNG, JPG,
-                JPEG, BMP, TIFF, TXT, CSV, ZIP, RAR и менее 10 МБ.
-              </FormDescription>
+              <FormLabel>{t("form.labels.attachment")}</FormLabel>
               <FormControl>
                 <Input
                   type="file"
                   accept={ALLOWED_FILE_TYPES.join(",")}
                   onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    onChange(file);
+                    console.log(value, "just call");
+                    onChange(e.target.files);
                   }}
                   {...field}
-                  value={undefined}
                 />
               </FormControl>
+              <FormDescription>
+                {t("form.descriptions.attachment")}
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
 
         <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Отправка..." : "Отправить"}
+          {isSubmitting
+            ? t("form.buttons.submitting")
+            : t("form.buttons.submit")}
         </Button>
       </form>
     </Form>

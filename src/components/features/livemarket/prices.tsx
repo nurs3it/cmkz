@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import {
   Table,
   TableBody,
@@ -15,23 +16,26 @@ import { Button } from "@ui/button";
 import Link from "next/link";
 import { ArrowRightIcon } from "lucide-react";
 import { Price } from "@/types/pirce";
+import { getMessages } from "next-intl/server";
 
 const tabs = [
   {
-    label: "ГЦБ",
+    labelKey: "livemarket.tabs.gcb",
     value: "gcb",
   },
   {
-    label: "Корпоративные",
+    labelKey: "livemarket.tabs.corporate",
     value: "corp",
   },
   {
-    label: "Индексы",
+    labelKey: "livemarket.tabs.index",
     value: "index",
   },
 ];
 
 export function LiveMarketPrices() {
+  const t = useTranslations();
+
   return (
     <Card className="rounded h-full shadow-none p-4">
       <Tabs defaultValue="gcb" className="w-full">
@@ -42,7 +46,7 @@ export function LiveMarketPrices() {
               value={tab.value}
               className="text-base font-normal cursor-pointer transition-colors bg-transparent border-none outline-none px-0 pb-1 hover:text-primary data-[state=active]:text-primary data-[state=active]:border-b-2 data-[state=active]:bg-transparent data-[state=active]:shadow-none max-w-max data-[state=active]:border-b-primary"
             >
-              {tab.label}
+              {t(tab.labelKey)}
             </TabsTrigger>
           ))}
         </TabsList>
@@ -63,7 +67,7 @@ export function LiveMarketPrices() {
           className="text-sm w-max text-primary p-1"
         >
           <Link href="/market">
-            Перейти к рынку
+            {t("livemarket.view_market")}
             <ArrowRightIcon className="w-4 h-4" />
           </Link>
         </Button>
@@ -73,15 +77,22 @@ export function LiveMarketPrices() {
 }
 
 const PricesTable = async () => {
+  const messages = await getMessages();
   const prices: Price[] = await getPrices();
 
   return (
     <Table>
       <TableHeader>
         <TableRow className="text-base border-none">
-          <TableHead className="w-[100px] font-normal">Код</TableHead>
-          <TableHead className="font-normal">Значение</TableHead>
-          <TableHead className="text-right font-normal">Тренд,%</TableHead>
+          <TableHead className="w-[100px] font-normal">
+            {messages.livemarket.table.code}
+          </TableHead>
+          <TableHead className="font-normal text-center">
+            {messages.livemarket.table.value}
+          </TableHead>
+          <TableHead className="text-right font-normal">
+            {messages.livemarket.table.trend}
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

@@ -3,61 +3,57 @@ type Breadcrumb = {
   href: string;
 };
 
-type RouteMeta = {
+export interface RouteMeta {
   path: string;
-  title: string;
-};
+  titleKey: string;
+}
 
 export const routeMetadata: RouteMeta[] = [
-  { path: "/", title: "Главная" },
-  { path: "/statistics", title: "Статистика" },
+  { path: "/", titleKey: "page_titles.home" },
+  { path: "/statistics", titleKey: "page_titles.statistics" },
   {
     path: "/statistics/bonds-realtime",
-    title: "Доходность, цены и объемы облигаций в режиме реального времени",
+    titleKey: "menu.statistics.bonds_realtime",
   },
   {
     path: "/statistics/macro-indicators",
-    title: "Макроэкономические  показатели",
+    titleKey: "menu.statistics.macro_indicators",
   },
   {
     path: "/statistics/calendar-of-issues",
-    title: "Календарь выпусков включая  предстоящие аукционы и даты  выпуска",
+    titleKey: "menu.statistics.calendar_issues",
   },
-  { path: "/information", title: "Информация о фи" },
-  { path: "/information/bonds", title: "Сведения по облигациям" },
-  { path: "/information/issuers", title: "Сведения по эмитентам" },
+  { path: "/information", titleKey: "page_titles.information" },
+  { path: "/information/bonds", titleKey: "menu.information.bonds" },
+  { path: "/information/issuers", titleKey: "menu.information.issuers" },
   {
     path: "/information/calendar-of-corporate-events",
-    title: "Календарь корпоративных  событий",
+    titleKey: "menu.information.corporate_events",
   },
-  { path: "/normative-legal-base", title: "Нормативно-правовая база" },
+  { path: "/normative-legal-base", titleKey: "page_titles.legal" },
   {
     path: "/normative-legal-base/rules-and-regulations",
-    title: "Правила и положения,  регулирующие рынок с  ссылками",
+    titleKey: "menu.legal.rules",
   },
-  { path: "/normative-legal-base/types-of-bonds", title: "Виды облигаций" },
-  { path: "/normative-legal-base/taxation", title: "Налогообложение" },
+  {
+    path: "/normative-legal-base/types-of-bonds",
+    titleKey: "menu.legal.bond_types",
+  },
+  { path: "/normative-legal-base/taxation", titleKey: "menu.legal.taxation" },
   {
     path: "/normative-legal-base/protection-of-investor-rights",
-    title: "Защита прав инвесторов",
+    titleKey: "menu.legal.investor_rights",
   },
-  { path: "/contacts", title: "Контакты" },
-  {
-    path: "/contacts/contact-form",
-    title: "Контактная форма для  запросов и обратной связи",
-  },
-  {
-    path: "/contacts/contact-information",
-    title:
-      "Контактная информация:  адреса электронной почты и  номера телефонов отделов и  организаций",
-  },
+  { path: "/contacts", titleKey: "page_titles.contacts" },
+  { path: "/contacts/contact-form", titleKey: "menu.contacts.form" },
+  { path: "/contacts/contact-information", titleKey: "menu.contacts.info" },
   {
     path: "/contacts/contact-information-of-market-participants",
-    title: "Контактная информация участников рынка",
+    titleKey: "menu.contacts.participants",
   },
   {
     path: "/contacts/frequently-asked-questions",
-    title: "Ответы на часто задаваемые вопросы",
+    titleKey: "menu.contacts.faq",
   },
 ];
 
@@ -72,7 +68,7 @@ export function getBreadcrumbs(currentPath: string): Breadcrumb[] {
     const match = routeMetadata.find((r) => r.path === currentHref);
     if (match) {
       breadcrumbs.push({
-        title: match.title,
+        title: match.titleKey,
         href: match.path,
       });
     }
@@ -81,8 +77,26 @@ export function getBreadcrumbs(currentPath: string): Breadcrumb[] {
   return breadcrumbs;
 }
 
-export function getPageMetadata(
-  currentPath: string = "",
-): RouteMeta | undefined {
-  return routeMetadata.find((r) => r.path === currentPath);
+export function getPageMetadata(path: string) {
+  return routeMetadata.find((route) => route.path === path);
+}
+
+export function useBreadcrumbs(path: string) {
+  const t = useTranslations();
+  const breadcrumbs = [];
+  const segments = path.split("/").filter(Boolean);
+  let currentPath = "";
+
+  for (const segment of segments) {
+    currentPath += `/${segment}`;
+    const match = getPageMetadata(currentPath);
+    if (match) {
+      breadcrumbs.push({
+        title: t(match.titleKey),
+        href: match.path,
+      });
+    }
+  }
+
+  return breadcrumbs;
 }

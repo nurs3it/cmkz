@@ -1,6 +1,6 @@
-export type MenuItem = {
+export interface MenuItem {
   code: string;
-  label: string;
+  labelKey: string;
   href?: string;
   children?: MenuItem[];
-};
+}

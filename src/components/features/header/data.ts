@@ -3,96 +3,94 @@ import { MenuItem } from "@/types/menu";
 export const menu: MenuItem[] = [
   {
     code: "statistics",
-    label: "СТАТИСТИКА",
+    labelKey: "menu.statistics.title",
     children: [
       {
         code: "bonds-realtime",
-        label: "Доходность, цены и объемы облигаций в режиме реального времени",
+        labelKey: "menu.statistics.bonds_realtime",
         href: "/statistics/bonds-realtime",
       },
       {
         code: "macro-indicators",
-        label: "Макроэкономические  показатели",
+        labelKey: "menu.statistics.macro_indicators",
         href: "/statistics/macro-indicators",
       },
       {
         code: "calendar-of-issues",
-        label:
-          "Календарь выпусков включая  предстоящие аукционы и даты  выпуска",
+        labelKey: "menu.statistics.calendar_issues",
         href: "/statistics/calendar-of-issues",
       },
     ],
   },
   {
     code: "information",
-    label: "ИНФОРМАЦИЯ О ФИ",
+    labelKey: "menu.information.title",
     children: [
       {
         code: "bonds",
-        label: "Сведения по облигациям",
+        labelKey: "menu.information.bonds",
         href: "/information/bonds",
       },
       {
         code: "issuers",
-        label: "Сведения по эмитентам",
+        labelKey: "menu.information.issuers",
         href: "/information/issuers",
       },
       {
         code: "calendar-of-corporate-events",
-        label: "Календарь корпоративных  событий",
+        labelKey: "menu.information.corporate_events",
         href: "/information/calendar-of-corporate-events",
       },
     ],
   },
   {
     code: "normative-legal-base",
-    label: "НОРМАТИВНО-ПРАВОВАЯ  БАЗА",
+    labelKey: "menu.legal.title",
     children: [
       {
         code: "rules-and-regulations",
-        label: "Правила и положения,  регулирующие рынок с  ссылками",
+        labelKey: "menu.legal.rules",
         href: "/normative-legal-base/rules-and-regulations",
       },
       {
         code: "types-of-bonds",
-        label: "Виды облигаций",
+        labelKey: "menu.legal.bond_types",
         href: "/normative-legal-base/types-of-bonds",
       },
       {
         code: "taxation",
-        label: "Налогообложение",
+        labelKey: "menu.legal.taxation",
         href: "/normative-legal-base/taxation",
       },
       {
         code: "protection-of-investor-rights",
-        label: "Защита прав инвесторов",
+        labelKey: "menu.legal.investor_rights",
         href: "/normative-legal-base/protection-of-investor-rights",
       },
     ],
   },
   {
     code: "contacts",
-    label: "КОНТАКТЫ",
+    labelKey: "menu.contacts.title",
     children: [
       {
         code: "contact-form",
-        label: "Контактная форма для  запросов и обратной связи",
+        labelKey: "menu.contacts.form",
         href: "/contacts/contact-form",
       },
       {
         code: "contact-information",
-        label:
-          "Контактная информация:  адреса электронной почты и  номера телефонов отделов и  организаций",
+        labelKey: "menu.contacts.info",
         href: "/contacts/contact-information",
       },
       {
         code: "contact-information-of-market-participants",
-        label: "Контактная информация участников рынка",
+        labelKey: "menu.contacts.participants",
         href: "/contacts/contact-information-of-market-participants",
       },
       {
         code: "frequently-asked-questions",
-        label: "Ответы на часто задаваемые вопросы",
+        labelKey: "menu.contacts.faq",
         href: "/contacts/frequently-asked-questions",
       },
     ],

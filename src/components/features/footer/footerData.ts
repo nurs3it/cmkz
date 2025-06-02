@@ -1,7 +1,7 @@
-export type FooterLink = {
-  label: string;
+export interface FooterLink {
+  key: string;
   href: string;
-};
+}
 
 export const footerContacts = {
   phone: "+7 (727) 777-77-77",
@@ -10,11 +10,11 @@ export const footerContacts = {
 };
 
 export const footerLinks: FooterLink[] = [
-  { label: "Использование cookies", href: "/cookies" },
-  { label: "Политика конфиденциальности", href: "/privacy" },
-  { label: "Условия использования приложения", href: "/app-terms" },
-  { label: "Политика использования Сайта", href: "/site-policy" },
-  { label: "Публичная оферта для клиентов", href: "/public-offer" },
+  { key: "cookies", href: "/cookies" },
+  { key: "privacy", href: "/privacy" },
+  { key: "app_terms", href: "/app-terms" },
+  { key: "site_policy", href: "/site-policy" },
+  { key: "public_offer", href: "/public-offer" },
 ];
 
 export const footerCopyright =

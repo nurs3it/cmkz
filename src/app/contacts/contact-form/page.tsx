@@ -7,8 +7,8 @@ import { ContactValidationForm } from "./form";
 const page = getPageMetadata("/contacts/contact-form");
 
 export const metadata: Metadata = {
-  title: page?.title || "CMKZ",
-  description: page?.title || "CMKZ Frontend Application",
+  title: page?.titleKey || "CMKZ",
+  description: page?.titleKey || "CMKZ Frontend Application",
 };
 
 export default function ContactForm() {

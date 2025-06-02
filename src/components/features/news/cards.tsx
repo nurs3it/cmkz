@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { GroupedLayout } from "@layout/grouped";
 import { NewsCard } from "./card";
 import { News } from "@/types/news";
@@ -10,8 +11,10 @@ interface NewsCardsProps {
 }
 
 export function NewsCards({ cards }: NewsCardsProps) {
+  const t = useTranslations();
+
   return (
-    <GroupedLayout title="Новости">
+    <GroupedLayout title={t("news.title")}>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 h-full">
         {cards.map((card) => (
           <NewsCard key={card.title} card={card} />
@@ -22,7 +25,7 @@ export function NewsCards({ cards }: NewsCardsProps) {
           variant="link"
           className="w-max text-primary p-0 cursor-pointer flex items-center gap-2 mt-auto"
         >
-          Все новости
+          {t("news.view_all")}
           <Icon icon={ChevronRightIcon} size={16} />
         </Button>
       </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
 import { Regulation as RegulationType } from "@/types/regulation";
@@ -19,6 +20,7 @@ interface RegulationCardFilesProps {
 
 export function RegulationCard({ card }: RegulationCardProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations();
 
   if (isOpen)
     return (
@@ -44,7 +46,7 @@ export function RegulationCard({ card }: RegulationCardProps) {
           className="w-max text-primary p-0 cursor-pointer flex items-center gap-2 mt-auto"
           onClick={() => setIsOpen(!isOpen)}
         >
-          Читать далее
+          {t("regulation.read_more")}
           <Icon icon={ChevronRightIcon} size={16} />
         </Button>
       </div>
@@ -57,6 +59,8 @@ const RegulationCardFiles = ({
   setIsOpen,
   isOpen,
 }: RegulationCardFilesProps) => {
+  const t = useTranslations();
+
   return (
     <div className="flex flex-col border rounded border-primary relative overflow-hidden">
       <Image
@@ -89,7 +93,7 @@ const RegulationCardFiles = ({
           onClick={() => setIsOpen(!isOpen)}
         >
           <Icon icon={ChevronLeftIcon} size={16} />
-          Вернуться к описанию
+          {t("regulation.back_to_description")}
         </Button>
       </div>
     </div>

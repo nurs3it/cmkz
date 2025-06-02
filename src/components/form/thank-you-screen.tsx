@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import { Button } from "@ui/button";
 import { CheckCircle2 } from "lucide-react";
 
@@ -6,6 +7,8 @@ interface ThankYouScreenProps {
 }
 
 export function ThankYouScreen({ onReset }: ThankYouScreenProps) {
+  const t = useTranslations();
+
   return (
     <div className="flex flex-col items-center justify-center space-y-6 text-center">
       <div className="rounded-full bg-primary/10 p-3">
@@ -13,14 +16,14 @@ export function ThankYouScreen({ onReset }: ThankYouScreenProps) {
       </div>
       <div className="space-y-2">
         <h2 className="text-2xl font-semibold tracking-tight">
-          Спасибо за обращение!
+          {t("form.thank_you.title")}
         </h2>
         <p className="text-muted-foreground">
-          Мы получили ваше сообщение и свяжемся с вами в ближайшее время.
+          {t("form.thank_you.description")}
         </p>
       </div>
       <Button onClick={onReset} variant="outline">
-        Отправить еще одно сообщение
+        {t("form.thank_you.new_request")}
       </Button>
     </div>
   );
