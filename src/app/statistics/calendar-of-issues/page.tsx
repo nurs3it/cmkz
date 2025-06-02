@@ -5,9 +5,9 @@ import { Metadata } from "next";
 import { getMessages } from "next-intl/server";
 import { getNestedTranslation } from "@/utils/translations";
 
+const PATHNAME = "/statistics/calendar-of-issues";
 const messages = await getMessages();
-
-const page = getPageMetadata("/statistics/calendar-of-issues");
+const page = getPageMetadata(PATHNAME);
 
 export const metadata: Metadata = {
   title:
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 export default function CalendarOfIssues() {
   return (
     <Container className="flex flex-col gap-10 px-4">
-      <PageTitle />
+      <PageTitle pathname={PATHNAME} />
     </Container>
   );
 }

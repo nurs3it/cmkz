@@ -5,9 +5,9 @@ import { Metadata } from "next";
 import { getMessages } from "next-intl/server";
 import { getNestedTranslation } from "@/utils/translations";
 
+const PATHNAME = "/statistics/macro-indicators";
 const messages = await getMessages();
-
-const page = getPageMetadata("/statistics/macro-indicators");
+const page = getPageMetadata(PATHNAME);
 
 export const metadata: Metadata = {
   title:
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 export default function MacroIndicators() {
   return (
     <Container className="flex flex-col gap-10 px-4">
-      <PageTitle />
+      <PageTitle pathname={PATHNAME} />
     </Container>
   );
 }
