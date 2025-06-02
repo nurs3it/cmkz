@@ -152,5 +152,12 @@
     "initiatives": "Initiatives",
     "error": "Error",
     "not_found": "Page Not Found"
+  },
+  "error_page": {
+    "not_found": {
+      "title": "Page Not Found",
+      "description": "Sorry, the requested page does not exist. It may have been removed or relocated.",
+      "back_home": "Back to Home"
+    }
   }
 }
