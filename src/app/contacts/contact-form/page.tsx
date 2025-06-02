@@ -3,12 +3,24 @@ import { PageTitle } from "@features/pagetitle";
 import { Container } from "@layout/container";
 import { Metadata } from "next";
 import { ContactValidationForm } from "./form";
+import { getMessages } from "next-intl/server";
+import { getNestedTranslation } from "@/utils/translations";
+
+const messages = await getMessages();
 
 const page = getPageMetadata("/contacts/contact-form");
 
 export const metadata: Metadata = {
-  title: page?.titleKey || "CMKZ",
-  description: page?.titleKey || "CMKZ Frontend Application",
+  title:
+    getNestedTranslation(
+      messages,
+      page?.titleKey || "menu.contacts.contact_form",
+    ) || "CMKZ",
+  description:
+    getNestedTranslation(
+      messages,
+      page?.titleKey || "menu.contacts.contact_form",
+    ) || "CMKZ Frontend Application",
 };
 
 export default function ContactForm() {

@@ -2,12 +2,24 @@ import { getPageMetadata } from "@/lib/breadcrumbs";
 import { PageTitle } from "@features/pagetitle";
 import { Container } from "@layout/container";
 import { Metadata } from "next";
+import { getMessages } from "next-intl/server";
+import { getNestedTranslation } from "@/utils/translations";
+
+const messages = await getMessages();
 
 const page = getPageMetadata("/statistics/macro-indicators");
 
 export const metadata: Metadata = {
-  title: page?.title || "CMKZ",
-  description: page?.title || "CMKZ Frontend Application",
+  title:
+    getNestedTranslation(
+      messages,
+      page?.titleKey || "menu.statistics.macro_indicators",
+    ) || "CMKZ",
+  description:
+    getNestedTranslation(
+      messages,
+      page?.titleKey || "menu.statistics.macro_indicators",
+    ) || "CMKZ Frontend Application",
 };
 
 export default function MacroIndicators() {

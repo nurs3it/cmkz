@@ -80,23 +80,3 @@ export function getBreadcrumbs(currentPath: string): Breadcrumb[] {
 export function getPageMetadata(path: string) {
   return routeMetadata.find((route) => route.path === path);
 }
-
-export function useBreadcrumbs(path: string) {
-  const t = useTranslations();
-  const breadcrumbs = [];
-  const segments = path.split("/").filter(Boolean);
-  let currentPath = "";
-
-  for (const segment of segments) {
-    currentPath += `/${segment}`;
-    const match = getPageMetadata(currentPath);
-    if (match) {
-      breadcrumbs.push({
-        title: t(match.titleKey),
-        href: match.path,
-      });
-    }
-  }
-
-  return breadcrumbs;
-}
