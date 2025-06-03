@@ -12,15 +12,20 @@ import { ChevronDown, Info } from "lucide-react";
 import NormativeLegalBaseLink from "./link";
 import { getMessages } from "next-intl/server";
 
+type Props = {
+  params: Promise<{
+    type: string;
+  }>;
+  children: React.ReactNode;
+};
+
 export default async function NormativeLegalBaseLayout({
   params,
   children,
-}: {
-  params: { type: string };
-  children: React.ReactNode;
-}) {
+}: Props) {
+  const resolvedParams = await params;
   const locale = await getLocale();
-  const type = params.type as string;
+  const type = resolvedParams.type;
   const groupes = await getGroupedDocumentsByType(type);
   const messages = await getMessages();
 
