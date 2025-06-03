@@ -31,19 +31,6 @@ export const routeMetadata: RouteMeta[] = [
     titleKey: "menu.information.corporate_events",
   },
   { path: "/normative-legal-base", titleKey: "page_titles.legal" },
-  {
-    path: "/normative-legal-base/rules-and-regulations",
-    titleKey: "menu.legal.rules",
-  },
-  {
-    path: "/normative-legal-base/types-of-bonds",
-    titleKey: "menu.legal.bond_types",
-  },
-  { path: "/normative-legal-base/taxation", titleKey: "menu.legal.taxation" },
-  {
-    path: "/normative-legal-base/protection-of-investor-rights",
-    titleKey: "menu.legal.investor_rights",
-  },
   { path: "/contacts", titleKey: "page_titles.contacts" },
   { path: "/contacts/contact-form", titleKey: "menu.contacts.form" },
   { path: "/contacts/contact-information", titleKey: "menu.contacts.info" },

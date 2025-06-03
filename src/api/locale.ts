@@ -10,3 +10,13 @@ export const changeLocale = async (locale: string) => {
 
   redirect(headerStore.get("x-pathname") || "/");
 };
+
+export const getLocale = async () => {
+  try {
+    const cookieStore = await cookies();
+    return cookieStore.get("x-locale")?.value || "ru";
+  } catch (error) {
+    console.error("Error getting locale:", error);
+    return "ru";
+  }
+};

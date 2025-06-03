@@ -8,23 +8,23 @@ import { getNestedTranslation } from "@/utils/translations";
 export async function generateMetadata(): Promise<Metadata> {
   const messages = await getMessages();
   return {
-    title: messages.page_titles.statistics,
+    title: messages.page_titles.legal,
   };
 }
 
-export default async function Statistics() {
+export default async function NormativeLegalBase() {
   const messages = await getMessages();
-  const statistics = (await getMenu()).find(
-    (item) => item.code === "statistics",
+  const legal = (await getMenu()).find(
+    (item) => item.code === "normative-legal-base",
   );
 
   return (
     <Container className="flex flex-col gap-4 py-10 px-4">
       <h1 className="text-2xl font-bold">
-        {getNestedTranslation(messages, "page_titles.statistics")}
+        {getNestedTranslation(messages, "page_titles.legal")}
       </h1>
       <ul>
-        {statistics?.children?.map((item) => (
+        {legal?.children?.map((item) => (
           <li className="text-lg underline text-primary" key={item.code}>
             <Link href={item.href || ""}>
               {item.label ||

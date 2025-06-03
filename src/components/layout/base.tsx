@@ -1,6 +1,6 @@
-import { Header } from "@features/header";
-import { Footer } from "@features/footer";
-import { Breadcrumbs } from "@features/breadcrumbs";
+import { Header } from "@/components/features/header";
+import { Footer } from "@/components/features/footer";
+import { Breadcrumbs } from "@/components/features/breadcrumbs";
 
 export default function BaseLayout({
   children,

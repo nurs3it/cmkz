@@ -1,15 +1,17 @@
-"use client";
-
-import { useTranslations } from "next-intl";
 import { Button } from "@ui/button";
-import { menu } from "@components/features/header/data";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@ui/hover-card";
 import { Sheet, SheetContent, SheetTrigger } from "@ui/sheet";
 import { Menu } from "lucide-react";
 import { getId } from "@lib/id";
 import Link from "next/link";
+import { MenuItem } from "@/types/menu";
+import { useTranslations } from "next-intl";
 
-export function Navigation() {
+interface NavigationProps {
+  menu: MenuItem[];
+}
+
+export function Navigation({ menu }: NavigationProps) {
   const t = useTranslations();
 
   return (
@@ -24,7 +26,7 @@ export function Navigation() {
                 size="sm"
                 className="text-sm px-2 hover:text-primary"
               >
-                {t(item.labelKey)}
+                {item.label || t(item.labelKey || "")}
               </Button>
             </HoverCardTrigger>
             <HoverCardContent className="p-0 w-max h-max">
@@ -36,7 +38,9 @@ export function Navigation() {
                     variant="ghost"
                     className="p-4 flex-wrap font-normal max-w-80 flex h-auto text-left justify-start cursor-pointer rounded-none border-b whitespace-normal hover:text-primary"
                   >
-                    <Link href={child.href || ""}>{t(child.labelKey)}</Link>
+                    <Link href={child.href || ""}>
+                      {child.label || t(child.labelKey || "")}
+                    </Link>
                   </Button>
                 ))}
               </div>
@@ -56,7 +60,9 @@ export function Navigation() {
           <nav className="flex flex-col gap-8 mt-8">
             {menu.map((item) => (
               <div key={item.code} className="flex flex-col gap-6">
-                <div className="font-semibold text-lg">{t(item.labelKey)}</div>
+                <div className="font-semibold text-lg">
+                  {item.label || t(item.labelKey || "")}
+                </div>
                 <div className="flex flex-col gap-3 pl-2">
                   {item.children?.map((child) => (
                     <Button
@@ -64,7 +70,7 @@ export function Navigation() {
                       variant="ghost"
                       className="justify-start whitespace-normal text-left font-normal"
                     >
-                      {t(child.labelKey)}
+                      {child.label || t(child.labelKey || "")}
                     </Button>
                   ))}
                 </div>
@@ -76,3 +82,5 @@ export function Navigation() {
     </>
   );
 }
+
+export const dynamic = "force-dynamic";

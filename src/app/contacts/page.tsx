@@ -1,6 +1,6 @@
 import { Container } from "@layout/container";
 import Link from "next/link";
-import { menu } from "@/components/features/header/data";
+import { getMenu } from "@/components/features/header/data";
 import { Metadata } from "next";
 import { getMessages } from "next-intl/server";
 import { getNestedTranslation } from "@/utils/translations";
@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Contacts() {
   const messages = await getMessages();
-  const contacts = menu.find((item) => item.code === "contacts");
+  const contacts = (await getMenu()).find((item) => item.code === "contacts");
 
   return (
     <Container className="flex flex-col gap-4 py-10 px-4">
@@ -25,7 +25,8 @@ export default async function Contacts() {
         {contacts?.children?.map((item) => (
           <li className="text-lg underline text-primary" key={item.code}>
             <Link href={item.href || ""}>
-              {getNestedTranslation(messages, item.labelKey)}
+              {item.label ||
+                getNestedTranslation(messages, item.labelKey || "")}
             </Link>
           </li>
         ))}

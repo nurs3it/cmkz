@@ -159,5 +159,8 @@
       "description": "Sorry, the requested page does not exist. It may have been removed or relocated.",
       "back_home": "Back to Home"
     }
+  },
+  "normativeLegalBase": {
+    "noDocuments": "No documents in this section yet"
   }
 }

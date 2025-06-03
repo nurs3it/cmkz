@@ -21,3 +21,8 @@ export function getNestedTranslation(
     }, obj) as string) || ""
   );
 }
+
+export function getLocalizedValue(obj: object, key: string, locale: string) {
+  if (!key) key = "name";
+  return `${obj[`${key}_${locale}` as keyof typeof obj] || obj[key as keyof typeof obj] || ""}`;
+}

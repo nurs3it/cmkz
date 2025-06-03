@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import BaseLayout from "@layout/base";
+import BaseLayout from "@/components/layout/base";
 import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { getNestedTranslation } from "@/utils/translations";
