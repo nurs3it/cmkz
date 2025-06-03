@@ -3,13 +3,18 @@ import { getLocale } from "@/api/locale";
 import { getLocalizedValue } from "@/utils/translations";
 import Markdown from "@/components/ui/markdown";
 
-export default async function NormativeLegalBaseDocument({
-  params,
-}: {
-  params: { type: string; document: string };
-}) {
+type Props = {
+  params: Promise<{
+    type: string;
+    document: string;
+  }>;
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default async function NormativeLegalBaseDocument({ params }: Props) {
+  const resolvedParams = await params;
   const locale = await getLocale();
-  const document = await getDocumentByCode(params.document);
+  const document = await getDocumentByCode(resolvedParams.document);
 
   return (
     <div className="flex flex-col gap-4">
