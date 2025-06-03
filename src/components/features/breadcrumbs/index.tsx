@@ -1,3 +1,5 @@
+"use client";
+
 import { Container } from "@layout/container";
 import {
   Breadcrumb,
@@ -11,15 +13,21 @@ import Link from "next/link";
 import { Icon } from "@/components/ui/icon";
 import { Home } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { headers } from "next/headers";
-import { getMessages } from "next-intl/server";
-import { getNestedTranslation } from "@/utils/translations";
+import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 
-export async function Breadcrumbs() {
-  const headersList = await headers();
-  const pathname = headersList.get("x-pathname") || "";
-  const breadcrumbs = getBreadcrumbs(pathname || "");
-  const messages = await getMessages();
+export function Breadcrumbs() {
+  const pathname = usePathname();
+  const [breadcrumbs, setBreadcrumbs] = useState<{ [key: string]: string }[]>(
+    [],
+  );
+
+  const t = useTranslations();
+
+  useEffect(() => {
+    setBreadcrumbs(getBreadcrumbs(pathname || ""));
+  }, [pathname]);
 
   if (breadcrumbs.length === 0) return null;
 
@@ -32,9 +40,7 @@ export async function Breadcrumbs() {
               <BreadcrumbLink asChild>
                 <div className="flex items-center gap-2">
                   <Icon icon={Home} size={16} />
-                  <Link href="/">
-                    {getNestedTranslation(messages, "page_titles.home")}
-                  </Link>
+                  <Link href="/">{t("page_titles.home")}</Link>
                 </div>
               </BreadcrumbLink>
             </BreadcrumbItem>
@@ -47,9 +53,7 @@ export async function Breadcrumbs() {
                     breadcrumb.href === pathname && "text-foreground",
                   )}
                 >
-                  <Link href={breadcrumb.href}>
-                    {getNestedTranslation(messages, breadcrumb.title)}
-                  </Link>
+                  <Link href={breadcrumb.href}>{t(breadcrumb.title)}</Link>
                 </BreadcrumbLink>
                 {index < breadcrumbs.length - 1 && <BreadcrumbSeparator />}
               </BreadcrumbItem>
@@ -60,6 +64,3 @@ export async function Breadcrumbs() {
     </div>
   );
 }
-
-// Force dynamic rendering to ensure the component updates on pathname changes
-export const dynamic = "force-dynamic";
