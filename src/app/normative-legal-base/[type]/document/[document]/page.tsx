@@ -3,12 +3,13 @@ import { getLocale } from "@/api/locale";
 import { getLocalizedValue } from "@/utils/translations";
 import Markdown from "@/components/ui/markdown";
 
-interface PageProps {
+type PageProps = {
   params: {
     type: string;
     document: string;
   };
-}
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
 export default async function NormativeLegalBaseDocument({
   params,
