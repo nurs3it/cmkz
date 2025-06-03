@@ -16,7 +16,7 @@ export default function NormativeLegalBaseLink({
     <Link
       href={href}
       className={cn(
-        "text-base cursor-pointer hover:text-primary p-0 text-left font-normal w-full mr-auto",
+        "text-base cursor-pointer hover:text-primary p-0 text-left font-normal w-full mr-auto leading-none",
         pathname?.includes(href) ? "text-primary" : "",
       )}
     >

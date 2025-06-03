@@ -48,11 +48,11 @@ export default async function NormativeLegalBaseLayout({
         <div className="w-1/4">
           {groupes.map((group) => (
             <Collapsible key={group.group}>
-              <CollapsibleTrigger className="text-lg flex gap-2 items-center justify-between cursor-pointer">
+              <CollapsibleTrigger className="text-lg flex gap-2 items-center justify-between cursor-pointer text-left leading-none">
                 <Icon icon={ChevronDown} size={20} />
                 {getLocalizedValue(group, "name", locale)}
               </CollapsibleTrigger>
-              <CollapsibleContent className="pl-8 py-4 gap-2 flex items-start justify-start flex-col">
+              <CollapsibleContent className="pl-8 py-4 gap-4 flex items-start justify-start flex-col">
                 {group.documents.map((document) => (
                   <NormativeLegalBaseLink
                     key={document.code}
