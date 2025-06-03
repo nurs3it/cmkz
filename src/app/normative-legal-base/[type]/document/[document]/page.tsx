@@ -8,7 +8,7 @@ type Props = {
     type: string;
     document: string;
   }>;
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export default async function NormativeLegalBaseDocument({ params }: Props) {
