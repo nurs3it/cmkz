@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import rehypeRaw from "rehype-raw";
+import Image from "next/image";
 
 interface MarkdownProps {
   content: string;
@@ -48,7 +49,16 @@ const Markdown: React.FC<MarkdownProps> = ({ content }) => {
               {children}
             </a>
           ),
-          img: ({ src, alt }) => <img src={src} alt={alt} className="my-1" />,
+          img: ({ src, alt }) => (
+            <div className="relative w-full h-[300px] my-1">
+              <Image
+                src={typeof src === "string" ? src : ""}
+                alt={alt || ""}
+                fill
+                className="object-contain"
+              />
+            </div>
+          ),
           blockquote: ({ children }) => (
             <blockquote className="my-1">{children}</blockquote>
           ),
