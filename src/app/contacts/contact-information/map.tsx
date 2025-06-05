@@ -22,9 +22,15 @@ export default function ContactInformationMap({
   }, []);
 
   const handleYmapsLoad = () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     if (typeof ymaps === "undefined" || !mapRef.current) return;
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     ymaps.ready(() => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       const map = new ymaps.Map(mapRef.current!, {
         center: [longitude, latitude],
         zoom: zoom ?? 9,
@@ -32,6 +38,8 @@ export default function ContactInformationMap({
         searchControlProvider: "yandex#search",
       });
 
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       const placemark = new ymaps.Placemark(
         [longitude, latitude], // координаты точки
         {
