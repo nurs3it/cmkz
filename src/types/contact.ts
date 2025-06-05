@@ -39,3 +39,17 @@ export const ALLOWED_FILE_TYPES = [
 ] as const;
 
 export const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+
+export interface ContactInformation {
+  title: string;
+  buildingName: string;
+  address: string;
+  phone: string;
+  mode: string[];
+  email: string;
+  coordinates: {
+    latitude: number;
+    longitude: number;
+    zoom?: number;
+  };
+}
