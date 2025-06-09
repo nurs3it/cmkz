@@ -1,3 +1,3 @@
-export default function NewsPage({ params }: { params: { id: string } }) {
-  return <div>NewsPage {params.id}</div>;
+export default function NewsPage() {
+  return <div>NewsPage</div>;
 }
