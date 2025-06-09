@@ -42,6 +42,7 @@ export const routeMetadata: RouteMeta[] = [
     path: "/contacts/frequently-asked-questions",
     titleKey: "menu.contacts.faq",
   },
+  { path: "/news", titleKey: "page_titles.news" },
 ];
 
 export function getBreadcrumbs(currentPath: string): Breadcrumb[] {

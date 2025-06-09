@@ -5,6 +5,7 @@ import { News } from "@/types/news";
 import { Button } from "@ui/button";
 import { Icon } from "@ui/icon";
 import { ChevronRightIcon } from "lucide-react";
+import Link from "next/link";
 
 interface NewsCardsProps {
   cards: News[];
@@ -22,11 +23,14 @@ export function NewsCards({ cards }: NewsCardsProps) {
       </div>
       <div className="flex justify-end">
         <Button
+          asChild
           variant="link"
           className="w-max text-primary p-0 cursor-pointer flex items-center gap-2 mt-auto"
         >
-          {t("news.view_all")}
-          <Icon icon={ChevronRightIcon} size={16} />
+          <Link href="/news" className="flex items-center gap-2">
+            {t("news.view_all")}
+            <Icon icon={ChevronRightIcon} size={16} />
+          </Link>
         </Button>
       </div>
     </GroupedLayout>
