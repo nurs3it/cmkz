@@ -1,10 +1,44 @@
+import { RealtimeChart } from "@/components/features/realtimechart";
 import { PageTitle } from "@features/pagetitle";
 import { Container } from "@layout/container";
+import { getLocale } from "@/api/locale";
+import { DateRange } from "react-ts-tradingview-widgets";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Link from "next/link";
 
-export default function BondsRealtime() {
+interface BondsRealtimeProps {
+  searchParams: Promise<{
+    [key: string]: string | string[] | undefined;
+  }>;
+}
+
+export default async function BondsRealtime({
+  searchParams,
+}: BondsRealtimeProps) {
+  const locale = await getLocale();
+  const resolvedSearchParams = await searchParams;
+
   return (
-    <Container className="flex flex-col gap-10 px-4">
+    <Container className="flex flex-col gap-4 px-4">
       <PageTitle />
+      <Tabs defaultValue={resolvedSearchParams.symbol as string}>
+        <TabsList>
+          <Link href="/statistics/bonds-realtime?symbol=SWAPUSD&range=1D">
+            <TabsTrigger value="SWAPUSD-1D">SWAP-1D</TabsTrigger>
+          </Link>
+          <Link href="/statistics/bonds-realtime?symbol=SWAPUSD&range=5D">
+            <TabsTrigger value="SWAPUSD-5D">SWAP-5D</TabsTrigger>
+          </Link>
+        </TabsList>
+      </Tabs>
+      <div className="w-full h-[500px]">
+        <RealtimeChart
+          allow_symbol_change={false}
+          locale={locale as "ru" | "kk" | "en"}
+          symbol={resolvedSearchParams.symbol as string}
+          range={resolvedSearchParams.range as DateRange}
+        />
+      </div>
     </Container>
   );
 }

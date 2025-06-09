@@ -32,6 +32,7 @@
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.57.0",
     "react-markdown": "^10.1.0",
+    "react-ts-tradingview-widgets": "^1.2.8",
     "rehype-highlight": "^7.0.2",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.1",
