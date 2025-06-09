@@ -5,8 +5,13 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Markdown from "@/components/ui/markdown";
 
-export default async function NewsPage({ params }: { params: { id: string } }) {
-  const news = await getNewsById(params.id);
+interface Props {
+  params: Promise<{ id: string }>;
+}
+
+export default async function NewsPage({ params }: Props) {
+  const resolvedParams = await params;
+  const news = await getNewsById(resolvedParams.id);
 
   if (!news) {
     return notFound();
