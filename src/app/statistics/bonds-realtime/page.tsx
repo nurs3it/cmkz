@@ -21,7 +21,9 @@ export default async function BondsRealtime({
   return (
     <Container className="flex flex-col gap-4 px-4">
       <PageTitle />
-      <Tabs defaultValue={resolvedSearchParams.symbol as string}>
+      <Tabs
+        defaultValue={`${resolvedSearchParams.symbol || "SWAPUSD"}-${resolvedSearchParams.range || "1D"}`}
+      >
         <TabsList>
           <Link href="/statistics/bonds-realtime?symbol=SWAPUSD&range=1D">
             <TabsTrigger value="SWAPUSD-1D">SWAP-1D</TabsTrigger>
@@ -35,8 +37,8 @@ export default async function BondsRealtime({
         <RealtimeChart
           allow_symbol_change={false}
           locale={locale as "ru" | "kk" | "en"}
-          symbol={resolvedSearchParams.symbol as string}
-          range={resolvedSearchParams.range as DateRange}
+          symbol={(resolvedSearchParams.symbol as string) || "SWAPUSD"}
+          range={(resolvedSearchParams.range as DateRange) || "1D"}
         />
       </div>
     </Container>
