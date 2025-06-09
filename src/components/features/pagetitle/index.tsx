@@ -8,9 +8,10 @@ import { headers } from "next/headers";
 
 interface PageTitleProps {
   pathname?: string;
+  title?: string;
 }
 
-export async function PageTitle({ pathname = "" }: PageTitleProps) {
+export async function PageTitle({ pathname = "", title = "" }: PageTitleProps) {
   const headersList = await headers();
   const pathFromHeader = headersList.get("x-pathname") || "";
   const messages = (await getMessages()) as NestedMessages;
@@ -18,9 +19,9 @@ export async function PageTitle({ pathname = "" }: PageTitleProps) {
     pathname || pathFromHeader || window.location.pathname,
   );
 
-  const title = page?.titleKey
-    ? getNestedTranslation(messages, page.titleKey)
-    : "";
+  const pageTitle = title
+    ? title
+    : getNestedTranslation(messages, page?.titleKey || "");
 
-  return <h1 className="text-2xl font-bold text-primary py-4">{title}</h1>;
+  return <h1 className="text-2xl font-bold text-primary py-4">{pageTitle}</h1>;
 }

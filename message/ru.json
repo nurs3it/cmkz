@@ -151,7 +151,8 @@
     "news": "Новости",
     "initiatives": "Инициативы",
     "error": "Ошибка",
-    "not_found": "Страница не найдена"
+    "not_found": "Страница не найдена",
+    "news_detail": "Детальная страница"
   },
   "error_page": {
     "not_found": {

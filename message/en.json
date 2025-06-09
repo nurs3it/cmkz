@@ -151,7 +151,8 @@
     "news": "News",
     "initiatives": "Initiatives",
     "error": "Error",
-    "not_found": "Page Not Found"
+    "not_found": "Page Not Found",
+    "news_detail": "News Detail"
   },
   "error_page": {
     "not_found": {

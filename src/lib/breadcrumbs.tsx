@@ -43,7 +43,32 @@ export const routeMetadata: RouteMeta[] = [
     titleKey: "menu.contacts.faq",
   },
   { path: "/news", titleKey: "page_titles.news" },
+  { path: "/news/:id", titleKey: "page_titles.news_detail" },
 ];
+
+function matchRoute(routePath: string, currentPath: string): boolean {
+  const routeParts = routePath.split("/").filter(Boolean);
+  const currentParts = currentPath.split("/").filter(Boolean);
+
+  if (routeParts.length !== currentParts.length) {
+    return false;
+  }
+
+  for (let i = 0; i < routeParts.length; i++) {
+    const routePart = routeParts[i];
+    const currentPart = currentParts[i];
+
+    if (routePart.startsWith(":")) {
+      continue;
+    }
+
+    if (routePart !== currentPart) {
+      return false;
+    }
+  }
+
+  return true;
+}
 
 export function getBreadcrumbs(currentPath: string): Breadcrumb[] {
   const parts = currentPath.split("/").filter(Boolean);
@@ -53,7 +78,13 @@ export function getBreadcrumbs(currentPath: string): Breadcrumb[] {
 
   for (const part of parts) {
     currentHref += `/${part}`;
-    const match = routeMetadata.find((r) => r.path === currentHref);
+
+    let match = routeMetadata.find((r) => r.path === currentHref);
+
+    if (!match) {
+      match = routeMetadata.find((r) => matchRoute(r.path, currentHref));
+    }
+
     if (match) {
       breadcrumbs.push({
         title: match.titleKey,
@@ -66,5 +97,11 @@ export function getBreadcrumbs(currentPath: string): Breadcrumb[] {
 }
 
 export function getPageMetadata(path: string) {
-  return routeMetadata.find((route) => route.path === path);
+  let match = routeMetadata.find((route) => route.path === path);
+
+  if (!match) {
+    match = routeMetadata.find((route) => matchRoute(route.path, path));
+  }
+
+  return match;
 }
