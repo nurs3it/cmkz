@@ -27,6 +27,7 @@ export function RealtimeChart({ locale, ...props }: RealtimeChartProps) {
     <AdvancedRealTimeChart
       locale={locale as Locales}
       autosize
+      timezone="Asia/Almaty"
       {...props}
       copyrightStyles={{
         parent: {
