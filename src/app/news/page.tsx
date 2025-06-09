@@ -6,9 +6,9 @@ import { Container } from "@/components/layout/container";
 export default async function NewsPage({
   searchParams,
 }: {
-  searchParams: { page: string };
+  searchParams: Promise<{ page: string }>;
 }) {
-  const page = searchParams.page || "1";
+  const page = (await searchParams).page || "1";
   const news = await getNews(page);
 
   return (
