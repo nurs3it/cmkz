@@ -2,7 +2,7 @@ import { getInitiatives } from "@/api/initiatives";
 import { InitiativeCards } from "./cards";
 
 export async function Initiatives() {
-  const initiatives = await getInitiatives().then((res) => res.slice(0, 3));
+  const { data } = await getInitiatives("1", 3);
 
-  return <InitiativeCards cards={initiatives} />;
+  return <InitiativeCards cards={data} />;
 }

@@ -44,6 +44,8 @@ export const routeMetadata: RouteMeta[] = [
   },
   { path: "/news", titleKey: "page_titles.news" },
   { path: "/news/:id", titleKey: "page_titles.news_detail" },
+  { path: "/initiatives", titleKey: "page_titles.initiatives" },
+  { path: "/initiatives/:id", titleKey: "page_titles.initiative_detail" },
 ];
 
 function matchRoute(routePath: string, currentPath: string): boolean {

@@ -152,7 +152,8 @@
     "initiatives": "Бастамалар",
     "error": "Қате",
     "not_found": "Бет табылмады",
-    "news_detail": "Жаңалықтар"
+    "news_detail": "Жаңалықтар",
+    "initiative_detail": "Бастамалар"
   },
   "error_page": {
     "not_found": {

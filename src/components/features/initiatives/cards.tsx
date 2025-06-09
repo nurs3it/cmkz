@@ -5,6 +5,7 @@ import { InitiativeCard } from "./card";
 import { Button } from "@ui/button";
 import { Icon } from "@ui/icon";
 import { ChevronRightIcon } from "lucide-react";
+import Link from "next/link";
 
 interface InitiativeCardsProps {
   cards: Initiative[];
@@ -22,11 +23,14 @@ export function InitiativeCards({ cards }: InitiativeCardsProps) {
       </div>
       <div className="flex justify-end">
         <Button
+          asChild
           variant="link"
           className="w-max text-primary p-0 cursor-pointer flex items-center gap-2 mt-auto"
         >
-          {t("initiatives.view_all")}
-          <Icon icon={ChevronRightIcon} size={16} />
+          <Link href="/initiatives">
+            {t("initiatives.view_all")}
+            <Icon icon={ChevronRightIcon} size={16} />
+          </Link>
         </Button>
       </div>
     </GroupedLayout>

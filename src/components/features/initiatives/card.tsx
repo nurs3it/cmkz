@@ -24,8 +24,9 @@ export function InitiativeCard({ card }: InitiativeCardProps) {
         />
       </div>
       <div className="flex flex-col gap-2 px-4 py-2 h-full">
-        <h3 className="text-lg font-bold">{card.title}</h3>
-        <p className="text-sm text-foreground">{card.description}</p>
+        <p className="text-sm text-foreground line-clamp-5 pt-4">
+          {card.description}
+        </p>
         <Button
           variant="link"
           className="w-max text-primary p-0 cursor-pointer flex items-center gap-2 mt-auto"
