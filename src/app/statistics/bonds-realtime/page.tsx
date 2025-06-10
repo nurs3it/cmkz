@@ -19,9 +19,10 @@ export default async function BondsRealtime({
   const resolvedSearchParams = await searchParams;
 
   return (
-    <Container className="flex flex-col gap-4 px-4">
+    <Container className="flex flex-col px-4">
       <PageTitle />
       <Tabs
+        className="mb-4"
         defaultValue={`${resolvedSearchParams.symbol || "SWAPUSD"}-${resolvedSearchParams.range || "1D"}`}
       >
         <TabsList>
